@@ -91,19 +91,10 @@ services:
     container_name: kib01
     depends_on: {"es01": {"condition": "service_healthy"}}
     ports:
-      - 5601:5601    
-    environment:
-      SERVERNAME: localhost
-      ELASTICSEARCH_URL: https://es01:9200
-      ELASTICSEARCH_HOSTS: https://es01:9200
-      ELASTICSEARCH_USERNAME: kibana_system
-      ELASTICSEARCH_PASSWORD: YgYeTFJSwZZ2C3J8U4op
-      ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES: $CERTS_DIR/ca/ca.crt
-      SERVER_SSL_ENABLED: "true"
-      SERVER_SSL_KEY: $CERTS_DIR/kib01/kib01.key
-      SERVER_SSL_CERTIFICATE: $CERTS_DIR/kib01/kib01.crt
+      - 5601:5601
     volumes: 
       - certs:$CERTS_DIR
+      - .configs/kibana.yml:/usr/share/kibana/config/kibana.yml
     networks:
       - elastic    
 volumes:

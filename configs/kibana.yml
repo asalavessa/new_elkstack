@@ -1,0 +1,44 @@
+server.name: kibana
+server.host: 0.0.0.0
+
+
+# Elasticsearch settings
+
+elasticsearch.url: https://es01:9200
+elasticsearch.hosts: https://es01:9200
+elasticsearch.username: kibana_system
+elasticsearch.password: YgYeTFJSwZZ2C3J8U4op
+elasticsearch.ssl.certificateAuthorities: /usr/share/elasticsearch/config/certificates/ca/ca.crt
+
+
+# SSL settings
+
+server.ssl.enabled: true
+server.ssl.certificate: /usr/share/elasticsearch/config/certificates/kib01/kib01.crt
+server.ssl.key: /usr/share/elasticsearch/config/certificates/kib01/kib01.key
+
+
+# X-Pack Security
+
+xpack.security.enabled: true
+xpack.encryptedSavedObjects.encryptionKey: 6JkAIj0VW60phSt+KhPRUcnCnMQo2Wr1c6IW+52mGoHt2q8TvX7sdG08u1+45BaM
+xpack.security.encryptionKey: 6JkAIj0VW60phSt+KhPRUcnCnMQo2Wr1c6IW+52mGoHt2q8TvX7sdG08u1+45BaM
+xpack.reporting.encryptionKey: 6JkAIj0VW60phSt+KhPRUcnCnMQo2Wr1c6IW+52mGoHt2q8TvX7sdG08u1+45BaM
+
+
+# fleet settings for Elastic-agent
+
+xpack.fleet.enabled: true
+xpack.fleet.agents.enabled: true
+xpack.fleet.agents.tlsCheckDisabled: true
+xpack.fleet.agents.kibana.host: "https://kib01:5601"
+xpack.fleet.agents.elasticsearch.host: "https://es01:9200"
+
+
+
+
+
+# Dark Mode
+uiSettings:
+  overrides:
+    "theme:darkMode": true

@@ -90,3 +90,17 @@ output.elasticsearch:
 
 
 logging.to_files: false
+
+
+
+#============================== Kibana =========================================
+setup.kibana:
+  host: "https://kib01:5601"
+  username: elastic
+  password: fBfGcaS3NlToqhEBUJA6
+  
+#============================== Dashboards =====================================
+# These settings control loading the sample dashboards to the Kibana index. Loading
+# the dashboards is disabled by default and can be enabled either by setting the
+# options here, or by using the `-setup` CLI flag.
+setup.dashboards.enabled: true

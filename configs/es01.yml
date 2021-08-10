@@ -67,14 +67,14 @@ bootstrap.memory_lock: true
 xpack.license.self_generated.type: trial
 xpack.security.enabled: true
 xpack.security.http.ssl.enabled: true
-xpack.security.http.ssl.key: $CERTS_DIR/es01/es01.key
-xpack.security.http.ssl.certificate_authorities: $CERTS_DIR/ca/ca.crt
-xpack.security.http.ssl.certificate: $CERTS_DIR/es01/es01.crt
+xpack.security.http.ssl.key: certificates/es01/es01.key
+xpack.security.http.ssl.certificate_authorities: certificates/ca/ca.crt
+xpack.security.http.ssl.certificate: certificates/es01/es01.crt
 xpack.security.transport.ssl.enabled: true
 xpack.security.transport.ssl.verification_mode: certificate
-xpack.security.transport.ssl.certificate_authorities: $CERTS_DIR/ca/ca.crt
-xpack.security.transport.ssl.certificate: $CERTS_DIR/es01/es01.crt
-xpack.security.transport.ssl.key: $CERTS_DIR/es01/es01.key
+xpack.security.transport.ssl.certificate_authorities: certificates/ca/ca.crt
+xpack.security.transport.ssl.certificate: certificates/es01/es01.crt
+xpack.security.transport.ssl.key: certificates/es01/es01.key
 #
 #
 #
@@ -87,11 +87,11 @@ xpack.security.transport.ssl.key: $CERTS_DIR/es01/es01.key
 # Pass an initial list of hosts to perform discovery when this node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-discovery.seed_hosts: ["es02", "es03"]
+#discovery.seed_hosts: ["es02", "es03"]
 #
 # Bootstrap the cluster using an initial set of master-eligible nodes:
 #
-cluster.initial_master_nodes: ["es01", "es02", "es03"]
+cluster.initial_master_nodes: ["es01"]
 #
 # For more information, consult the discovery and cluster formation module documentation.
 #

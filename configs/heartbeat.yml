@@ -98,6 +98,11 @@ setup.kibana:
   host: "https://kib01:5601"
   username: elastic
   password: fBfGcaS3NlToqhEBUJA6
+  setup.kibana.protocol: "https"
+  setup.kibana.ssl.enabled: true
+  setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+  setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/kib01/kib01.crt"
+  setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/kib01/kib01.key"
   
 #============================== Dashboards =====================================
 # These settings control loading the sample dashboards to the Kibana index. Loading

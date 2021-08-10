@@ -22,7 +22,7 @@ heartbeat.monitors:
   mode: any
   timeout: 3s
   username: kibana_system
-  password: "$KIBANA_SYSTEM_PASS"
+  password: "${KIBANA_SYSTEM_PASS}"
   check.request:
     method: "GET"
   check.response:

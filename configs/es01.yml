@@ -32,11 +32,9 @@ node.name: es01
 #
 path:
   data: /usr/share/elasticsearch/data
-#
-# Path to log files:
-#
-path:
   logs: /usr/share/elasticsearch/logs
+#
+#
 #
 # ----------------------------------- Memory -----------------------------------
 #
@@ -67,7 +65,7 @@ bootstrap.memory_lock: true
 # ---------------------------------- Xpack Security -----------------------------------
 #
 xpack.license.self_generated.type: trial
-xpack.security.enabled: true      
+xpack.security.enabled: true
 xpack.security.http.ssl.enabled: true
 xpack.security.http.ssl.key: $CERTS_DIR/es01/es01.key
 xpack.security.http.ssl.certificate_authorities: $CERTS_DIR/ca/ca.crt

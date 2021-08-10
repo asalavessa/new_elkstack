@@ -75,8 +75,8 @@ monitoring.enabled: true
 output.elasticsearch:
   hosts: ["https://es01:9200"]
   protocol: "https"
-  username: kibana_system
-  password: YgYeTFJSwZZ2C3J8U4op
+  username: elastic
+  password: fBfGcaS3NlToqhEBUJA6
 
 #Use SSL settings for HTTPS.
 

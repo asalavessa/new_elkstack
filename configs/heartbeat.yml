@@ -80,11 +80,11 @@ output.elasticsearch:
 
 #Use SSL settings for HTTPS.
 
-ssl.enabled: true
+  ssl.enabled: true
 
-ssl.certificate_authorities: /usr/share/elasticsearch/config/certificates/ca/ca.crt
-ssl.certificate: /usr/share/elasticsearch/config/certificates/kib01/kib01.crt
-ssl.key: /usr/share/elasticsearch/config/certificates/kib01/kib01.key
+  ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+  ssl.certificate: "/usr/share/elasticsearch/config/certificates/es01/es01.crt"
+  ssl.key: "/usr/share/elasticsearch/config/certificates/es01/es01.key"
 
 
 

@@ -24,3 +24,10 @@ instances:
     dns: 
       - kib01
       - localhost
+  
+#  - name: 'heart01'
+#    dns:
+#      - heart01
+#      - localhost
+#    ip:
+#      - 127.0.0.1

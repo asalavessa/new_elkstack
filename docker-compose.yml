@@ -102,7 +102,7 @@ services:
     container_name: heart01
     hostname: heart01
     user: root
-    image: "docker.elastic.co/beats/heartbeat:${ELASTIC_VERSION}"
+    image: docker.elastic.co/beats/heartbeat:${VERSION}
     volumes:
       - ./configs/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml
       - /var/run/docker.sock:/var/run/docker.sock

@@ -96,7 +96,23 @@ services:
       - certs:$CERTS_DIR
       - ./configs/kibana.yml:/usr/share/kibana/config/kibana.yml
     networks:
-      - elastic    
+      - elastic
+
+  heartbeat:
+    container_name: heart01
+    hostname: heart01
+    user: root
+    image: "docker.elastic.co/beats/heartbeat:${ELASTIC_VERSION}"
+    volumes:
+      - ./configs/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on: {"es01": {"condition": "service_healthy"}}
+    command: heartbeat -e -strict.perms=false
+    networks:
+      - elastic
+    restart: on-failure
+
+
 volumes:
   data01:
     driver: local

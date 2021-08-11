@@ -40,6 +40,8 @@ heartbeat.monitors:
   ipv6: true
   mode: any
   timeout: 3s
+  response:
+    include_body: always
   ssl:
     certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
   check.request:

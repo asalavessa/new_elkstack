@@ -1,0 +1,110 @@
+setup.dashboards.enabled: true
+
+setup.kibana.host: "https://kib01:5601"
+setup.kibana.username: elastic
+setup.kibana.password: fBfGcaS3NlToqhEBUJA6
+setup.kibana.ssl.enabled: true
+setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/kib01/kib01.crt"
+setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/kib01/kib01.key"
+
+metricbeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+
+metricbeat.modules:
+- module: system
+  metricsets:
+    - cpu             # CPU usage
+    - load            # CPU load averages
+    - memory          # Memory usage
+    - network         # Network IO
+    - process         # Per process metrics
+    - process_summary # Process summary
+    - uptime          # System Uptime
+    #- socket_summary  # Socket summary
+    - core           # Per CPU core usage
+    - diskio         # Disk IO
+    - filesystem     # File system usage for each mountpoint
+    #- fsstat         # File system summary metrics
+    #- raid           # Raid
+    #- socket         # Sockets and connection info (linux only)
+    #- service        # systemd service information
+  enabled: true
+  period: 10s
+  processes: ['.*']
+
+  # Configure the mount point of the host’s filesystem for use in monitoring a host from within a container
+  #system.hostfs: "/hostfs"
+
+  # Configure the metric types that are included by these metricsets.
+  cpu.metrics:  ["percentages","normalized_percentages", "ticks"] # The other available option is ticks.
+  core.metrics: ["percentages"]  # The other available option is ticks.
+
+- module: docker
+  metricsets:
+    - "container"
+    - "cpu"
+    - "diskio"
+    - "healthcheck"
+    - "info"
+    - "image"
+    - "memory"
+    - "network"
+  hosts: ["unix:///var/run/docker.sock"]
+  period: 10s
+  enabled: true
+
+- module: nginx
+  metricsets: ["stubstatus"]
+  enabled: true
+  period: 10s
+#
+#  # Nginx hosts
+  hosts: ["http://frontend:4200/nginx_status"]
+#
+#  # Path to server status. Default nginx_status
+#  server_status_path: "nginx_status"
+
+- module: mongodb
+  metricsets: ["dbstats", "status", "collstats", "metrics", "replstatus"]
+  period: 10s
+  enabled: true
+
+  # The hosts must be passed as MongoDB URLs in the format:
+  # [mongodb://][user:pass@]host[:port].
+  # The username and password can also be set using the respective configuration
+  # options. The credentials in the URL take precedence over the username and
+  # password configuration options.
+  hosts: ["mongodb:27017"]
+
+  # Optional SSL. By default is off.
+  #ssl.enabled: true
+
+  # Mode of verification of server certificate ('none' or 'full')
+  #ssl.verification_mode: 'full'
+
+  # List of root certificates for TLS server verifications
+  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+
+  # Certificate for SSL client authentication
+  #ssl.certificate: "/etc/pki/client/cert.pem"
+
+  # Client Certificate Key
+  #ssl.key: "/etc/pki/client/cert.key"
+
+  # Username to use when connecting to MongoDB. Empty by default.
+  username: metricbeat
+
+  # Password to use when connecting to MongoDB. Empty by default.
+  password: cluster123
+
+#============================== Autodiscover =====================================
+
+output.elasticsearch.hosts: ["https://es01:9200"]
+output.elasticsearch.username: elastic
+output.elasticsearch.password: fBfGcaS3NlToqhEBUJA6
+output.elasticsearch.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+output.elasticsearch.ssl.certificate: "/usr/share/elasticsearch/config/certificates/es01/es01.crt"
+output.elasticsearch.ssl.key: "/usr/share/elasticsearch/config/certificates/es01/es01.key"

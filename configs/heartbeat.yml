@@ -109,4 +109,4 @@ setup.kibana:
 # These settings control loading the sample dashboards to the Kibana index. Loading
 # the dashboards is disabled by default and can be enabled either by setting the
 # options here, or by using the `-setup` CLI flag.
-setup.dashboards.enabled: true
+setup.dashboards.enabled: false

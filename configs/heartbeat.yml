@@ -40,14 +40,22 @@ heartbeat.monitors:
   ipv6: true
   mode: any
   timeout: 3s
-  response:
-    include_body: always
+  response.include_body: always
+  response.include_body_max_bytes: 2048
   ssl:
     certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
   check.request:
     method: "GET"
   check.response:
     status: 200
+    json:
+      - description: check status
+        condition:
+          equals:
+            status: running
+  processors:
+    - decode_json_fields:
+        fields: ["http.response.body.content"]
 
 ##Monitor the nginx instance.
 #- type: http

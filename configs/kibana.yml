@@ -15,6 +15,7 @@ elasticsearch.ssl.certificateAuthorities: /usr/share/elasticsearch/config/certif
 server.ssl.enabled: true
 server.ssl.certificate: /usr/share/elasticsearch/config/certificates/kib01/kib01.crt
 server.ssl.key: /usr/share/elasticsearch/config/certificates/kib01/kib01.key
+server.ssl.certificateAuthorities: /usr/share/elasticsearch/config/certificates/ca/ca.crt
 
 
 # X-Pack Security

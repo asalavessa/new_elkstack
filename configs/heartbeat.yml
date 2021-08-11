@@ -21,8 +21,8 @@ heartbeat.monitors:
   ipv6: true
   mode: any
   timeout: 3s
-  username: kibana_system
-  password: YgYeTFJSwZZ2C3J8U4op
+  username: elastic
+  password: fBfGcaS3NlToqhEBUJA6
   check.request:
     method: "GET"
   check.response:

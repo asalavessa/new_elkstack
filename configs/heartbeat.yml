@@ -98,12 +98,10 @@ setup.kibana:
   host: "https://kib01:5601"
   username: elastic
   password: fBfGcaS3NlToqhEBUJA6
-  setup.kibana.protocol: "https"
-  setup.kibana.ssl.enabled: true
-  setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
-  setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/heart01/heart01.crt"
-  setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/heart01/heart01.key"
-  setup.kibana.ssl.verification_mode: none
+  ssl.enabled: true
+  ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+  ssl.certificate: "/usr/share/elasticsearch/config/certificates/heart01/heart01.crt"
+  #ssl.verification_mode: certificate
 
   
 #============================== Dashboards =====================================

@@ -48,14 +48,6 @@ heartbeat.monitors:
     method: "GET"
   check.response:
     status: 200
-    json:
-      - description: check status
-        condition:
-          equals:
-            status: running
-  processors:
-    - decode_json_fields:
-        fields: ["http.response.body.content"]
 
 ##Monitor the nginx instance.
 #- type: http

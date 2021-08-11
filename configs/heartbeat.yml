@@ -101,6 +101,7 @@ setup.kibana:
   ssl.enabled: true
   ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
   ssl.certificate: "/usr/share/elasticsearch/config/certificates/heart01/heart01.crt"
+  ssl.key: "/usr/share/elasticsearch/config/certificates/heart01/heart01.key"
   #ssl.verification_mode: certificate
 
   

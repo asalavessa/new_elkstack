@@ -103,7 +103,7 @@ setup.kibana:
   setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
   setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/heart01/heart01.crt"
   setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/heart01/heart01.key"
-  setup.kibana.ssl.verification_mode: certificate
+  setup.kibana.ssl.verification_mode: none
 
   
 #============================== Dashboards =====================================

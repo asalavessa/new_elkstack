@@ -85,7 +85,6 @@ output.elasticsearch:
   ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
   ssl.certificate: "/usr/share/elasticsearch/config/certificates/es01/es01.crt"
   ssl.key: "/usr/share/elasticsearch/config/certificates/es01/es01.key"
-  setup.kibana.ssl.verification_mode: none
 
 
 

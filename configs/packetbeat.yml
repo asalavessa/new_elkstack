@@ -11,7 +11,7 @@ setup.kibana.username: elastic
 setup.kibana.password: fBfGcaS3NlToqhEBUJA6
 setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
 setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
-setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.key"
 
 packetbeat.interfaces.device: any
 
@@ -58,7 +58,7 @@ packetbeat.protocols.mongodb:
 #  hosts: ["logstash:5044"]
 #  ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
 #  ssl.certificate: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
-#  ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+#  ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.key"
 #  index: packetbeat
 
 # Commented out for reference if you wanted
@@ -72,4 +72,4 @@ output.elasticsearch:
   ssl.enabled: true
   ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
   ssl.certificate: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
-  ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+  ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.key"

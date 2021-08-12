@@ -77,7 +77,7 @@ metricbeat.modules:
   # The username and password can also be set using the respective configuration
   # options. The credentials in the URL take precedence over the username and
   # password configuration options.
-  hosts: ["mongodb:27017"]
+  hosts: ["mongodb://admin:admin@mongodb:27017/todolist?authSource=admin"]
 
   # Optional SSL. By default is off.
   #ssl.enabled: true
@@ -95,10 +95,10 @@ metricbeat.modules:
   #ssl.key: "/etc/pki/client/cert.key"
 
   # Username to use when connecting to MongoDB. Empty by default.
-  username: admin
+  #username: admin
 
   # Password to use when connecting to MongoDB. Empty by default.
-  password: admin
+  #password: admin
 
 #============================== Autodiscover =====================================
 

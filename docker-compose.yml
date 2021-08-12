@@ -147,6 +147,7 @@ services:
     volumes:
       - ./configs/packetbeat.yml:/usr/share/packetbeat/packetbeat.yml:ro
       - /var/run/docker.sock:/var/run/docker.sock
+      - certs:$CERTS_DIR
     environment:
       CONFIG_DIR: /usr/share/packetbeat/config
       ELASTIC_USERNAME: elastic

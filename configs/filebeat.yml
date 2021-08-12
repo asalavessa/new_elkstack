@@ -1,0 +1,223 @@
+######################## Filebeat Configuration ############################
+
+# This file is a full configuration example documenting all non-deprecated
+# options in comments. For a shorter configuration example, that contains only
+# the most common options, please see filebeat.yml in the same directory.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/filebeat/index.html
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+#==========================  Modules configuration =============================
+filebeat.modules:
+
+#-------------------------------- Apache Module --------------------------------
+- module: apache
+  # Access logs
+  access:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths:
+      - /var/log/apache/sample.log
+      - /var/log/apache/access/*.*
+
+    # Input configuration (advanced). Any input configuration option
+    # can be added under this section.
+    #input:
+
+  # Error logs
+  error:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths:
+      - /var/log/apache/sample.log
+      - /var/log/apache/error/*.*
+
+    # Input configuration (advanced). Any input configuration option
+    # can be added under this section.
+    #input:
+
+#------------------------------- Mongodb Module -------------------------------
+- module: mongodb
+  log:
+    enabled: true
+    var.paths: ["/var/log/mongodb/mongod.log*"]
+
+#-------------------------------- MySQL Module --------------------------------
+- module: mysql
+  # Error logs
+  error:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths:
+      - /var/log/mysql/mysql-service/*.log
+      - /var/log/mysql/error/*.*
+      
+
+    # Input configuration (advanced). Any input configuration option
+    # can be added under this section.
+    #input:
+
+  # Slow logs
+  slowlog:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths:
+      - /var/db/*.log
+      - /var/log/mysql/slowlog/*.*
+
+    # Input configuration (advanced). Any input configuration option
+    # can be added under this section.
+    #input:
+
+#-------------------------------- NGINX Module --------------------------------
+- module: nginx
+  access:
+    enabled: true
+    var.paths: ["/var/log/nginx/access.log*"]
+  error:
+    enabled: true
+    var.paths: ["/var/log/nginx/error.log*"]
+ 
+
+#---------------------------- Elasticsearch Module ----------------------------
+
+- module: elasticsearch
+  # Server log
+  server:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+  gc:
+    enabled: true
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+  audit:
+    enabled: true
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+  slowlog:
+    enabled: true
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+  deprecation:
+    enabled: true
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+#-------------------------------- Kibana Module --------------------------------
+- module: kibana
+  # Server logs
+  log:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+  # Audit logs
+  audit:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+# ============================== Filebeat inputs ===============================
+
+filebeat.inputs:
+#    - type: tcp
+#      enabled: true
+#      max_message_size: 10MiB
+#      host: "file01:9000"
+  - type: docker
+    containers.ids:
+      - "*"
+      - stream="all"
+
+# Each - is an input. Most options can be set at the input level, so
+# you can use different inputs for various configurations.
+# Below are the input specific configurations.
+
+#------------------------------ Log input --------------------------------
+  - type: log
+
+  # Change to true to enable this input configuration.
+    enabled: true
+
+  # Paths that should be crawled and fetched. Glob based paths.
+    paths:
+      - /var/log/unclassified/*.*
+
+  # Configure the file encoding for reading files with international characters
+  # following the W3C recommendation for HTML5 (http://www.w3.org/TR/encoding).
+  # Some sample encodings:
+  #   plain, utf-8, utf-16be-bom, utf-16be, utf-16le, big5, gb18030, gbk,
+  #    hz-gb-2312, euc-kr, euc-jp, iso-2022-jp, shift-jis, ...
+    encoding: utf-8
+
+# Backoff values define how aggressively filebeat crawls new files for updates
+# The default values can be used in most cases. Backoff defines how long it is waited
+# to check a file again after EOF is reached. Default is 1s which means the file
+# is checked every second if new lines were added. This leads to a near real time crawling.
+# Every time a new line appears, backoff is reset to the initial value.
+    backoff: 5s
+
+#------------------------------ Container input --------------------------------
+#    - type: container
+#      enabled: true
+#
+#  # Paths for container logs that should be crawled and fetched.
+#      paths:
+#        -/var/lib/docker/containers/*/*.log
+#
+#  # Configure stream to filter to a specific stream: stdout, stderr or all (default)
+#      stream: all
+
+
+
+#============================== Kibana =========================================
+setup.kibana.host: "https://kib01:5601"
+setup.kibana.username: elastic
+setup.kibana.password: wfRPzK5d527HqeAx6iwf
+setup.kibana.ssl.enabled: true
+setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/kib01/kib01.crt"
+setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/kib01/kib01.key"
+
+#==================== Elasticsearch template setting ==========================
+output.elasticsearch.hosts: ["https://es01:9200"]
+output.elasticsearch.username: elastic
+output.elasticsearch.password: wfRPzK5d527HqeAx6iwf
+output.elasticsearch.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+output.elasticsearch.ssl.certificate: "/usr/share/elasticsearch/config/certificates/es01/es01.crt"
+output.elasticsearch.ssl.key: "/usr/share/elasticsearch/config/certificates/es01/es01.key"
+
+
+#============================== Dashboards =====================================
+# These settings control loading the sample dashboards to the Kibana index. Loading
+# the dashboards is disabled by default and can be enabled either by setting the
+# options here, or by using the `-setup` CLI flag.
+setup.dashboards.enabled: true
+

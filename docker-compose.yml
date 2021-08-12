@@ -155,6 +155,24 @@ services:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elastic
+  
+  file01:
+    container_name: file01
+    image: docker.elastic.co/beats/filebeat:${VERSION}
+    user: root
+    command: ["-strict.perms=false"]
+    volumes:
+      - ./configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - certs:$CERTS_DIR    
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    ports:
+      - "9000:9000" 
+    networks:
+      - elastic
+    restart: unless-stopped
 
 
 volumes:

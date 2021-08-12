@@ -95,10 +95,10 @@ metricbeat.modules:
   #ssl.key: "/etc/pki/client/cert.key"
 
   # Username to use when connecting to MongoDB. Empty by default.
-  username: metricbeat
+  username: admin
 
   # Password to use when connecting to MongoDB. Empty by default.
-  password: cluster123
+  password: admin
 
 #============================== Autodiscover =====================================
 

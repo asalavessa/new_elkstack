@@ -31,7 +31,6 @@ setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/cert
 setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
 setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.key"
 
-packetbeat.interfaces.device: any
 
 packetbeat.flows:
   timeout: 30s

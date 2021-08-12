@@ -31,3 +31,10 @@ instances:
       - localhost
     ip:
       - 127.0.0.1
+  
+  - name: 'packet01'
+    dns:
+      - packet01
+      - localhost
+    ip:
+      - 127.0.0.1

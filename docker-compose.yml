@@ -133,6 +133,27 @@ services:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elastic
+  
+  packet01:
+    container_name: packet01
+    image: docker.elastic.co/beats/packetbeat:${VERSION}
+    hostname: packet01
+    user: root
+    restart: unless-stopped
+    cap_add: 
+      - NET_ADMIN
+      - NET_RAW
+    command: packetbeat -e -strict.perms=false
+    volumes:
+      - ./configs/packetbeat.yml:/usr/share/packetbeat/packetbeat.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      CONFIG_DIR: /usr/share/packetbeat/config
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: fBfGcaS3NlToqhEBUJA6
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elastic
 
 
 volumes:
@@ -142,9 +163,12 @@ volumes:
     driver: local
   data03:
     driver: local
+  packetbeat:
+    driver: local
   certs:
     driver: local
+  
 
 networks: 
   elastic:
-    driver: bridge    
+    driver: bridge

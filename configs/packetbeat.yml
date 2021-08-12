@@ -1,0 +1,75 @@
+name: "packetbeat"
+setup.dashboards.enabled: true
+
+# Forcing Elasticsearch index template 
+setup.template.overwrite: true
+
+setup.kibana.host: "https://kibana:5601"
+setup.kibana.protocol: "https"
+setup.kibana.ssl.enabled: true
+setup.kibana.username: elastic
+setup.kibana.password: fBfGcaS3NlToqhEBUJA6
+setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+
+packetbeat.interfaces.device: any
+
+packetbeat.flows:
+  timeout: 30s
+  period: 10s
+
+packetbeat.protocols.dns:
+  ports: [53]
+  include_authorities: true
+  include_additionals: true
+
+packetbeat.protocols.icmp:
+  enabled: true
+
+packetbeat.protocols.http:
+  ports: [80, 5601, 9200, 8080, 8081, 5000, 8002, 4200]
+
+#packetbeat.protocols.memcache:
+#  ports: [11211]
+
+#packetbeat.protocols.mysql:
+#  ports: [3306]
+
+#packetbeat.protocols.pgsql:
+#  ports: [5432]
+
+#packetbeat.protocols.redis:
+#  ports: [6379]
+
+#packetbeat.protocols.thrift:
+#  ports: [9090]
+
+packetbeat.protocols.mongodb:
+  ports: [27017]
+
+#packetbeat.protocols.cassandra:
+#  ports: [9042]
+
+#processors:
+#- add_cloud_metadata: ~
+
+#output.logstash:
+#  hosts: ["logstash:5044"]
+#  ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+#  ssl.certificate: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+#  ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+#  index: packetbeat
+
+# Commented out for reference if you wanted
+# to send directly to elasticsearch
+
+output.elasticsearch:
+  hosts: ["https://elasticsearch:9200"]
+  protocol: "https"
+  username: elastic
+  password: fBfGcaS3NlToqhEBUJA6
+  ssl.enabled: true
+  ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
+  ssl.certificate: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"
+  ssl.key: "/usr/share/elasticsearch/config/certificates/packet01/packet01.crt"

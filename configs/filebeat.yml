@@ -200,7 +200,7 @@ filebeat.inputs:
 #============================== Kibana =========================================
 setup.kibana.host: "https://kib01:5601"
 setup.kibana.username: elastic
-setup.kibana.password: wfRPzK5d527HqeAx6iwf
+setup.kibana.password: fBfGcaS3NlToqhEBUJA6
 setup.kibana.ssl.enabled: true
 setup.kibana.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
 setup.kibana.ssl.certificate: "/usr/share/elasticsearch/config/certificates/kib01/kib01.crt"
@@ -209,7 +209,7 @@ setup.kibana.ssl.key: "/usr/share/elasticsearch/config/certificates/kib01/kib01.
 #==================== Elasticsearch template setting ==========================
 output.elasticsearch.hosts: ["https://es01:9200"]
 output.elasticsearch.username: elastic
-output.elasticsearch.password: wfRPzK5d527HqeAx6iwf
+output.elasticsearch.password: fBfGcaS3NlToqhEBUJA6
 output.elasticsearch.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/certificates/ca/ca.crt"]
 output.elasticsearch.ssl.certificate: "/usr/share/elasticsearch/config/certificates/es01/es01.crt"
 output.elasticsearch.ssl.key: "/usr/share/elasticsearch/config/certificates/es01/es01.key"
